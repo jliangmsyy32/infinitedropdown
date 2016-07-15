@@ -70,3 +70,6 @@ idd({
   showTooltip:true,
   tooltip:['这是','提示','条哦']
 })
+
+
+// 保存已选的数据，

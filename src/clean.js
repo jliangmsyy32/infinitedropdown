@@ -1,5 +1,6 @@
 'use strict';
 
-function clean(name) {
-  let a = document.querySelector(`select[name=${name}]``);
+function clean(name,node) {
+  let a = document.querySelector(`select[name=${name}]`);
+  let b = node.lastch
 }

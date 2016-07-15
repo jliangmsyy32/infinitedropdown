@@ -1,8 +1,8 @@
 {
-  "name": "citypicker",
+  "name": "infinitedropdown",
   "version": "1.0.1",
-  "description": "dity picker based on amazeui",
-  "main": "/dist/picker.min.js",
+  "description": "infinite dropdown",
+  "main": "/dist/infinitedropdown.js",
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.10.4",
@@ -24,6 +24,6 @@
     "picker",
     "city"
   ],
-  "author": "",
+  "author": "lwxyfer ",
   "license": "MIT"
 }
