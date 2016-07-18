@@ -1,88 +1,93 @@
 'use strict';
-import { data } from './data.js';
-import create from './create';
+import { data } from './data';
+import { loop,create,clean } from './utils';
 import { ChineseDistricts as CD } from './citydata';
-import { clean } from './clean.js';
 
 function idd({
-  node = 'idd',
-  data = false, // 指定载入的数据，不提供AJAX的方法； 提供多个实例。
+  selector = 'idd', // required
+  data = false, // required.指定载入的数据，不提供AJAX的方法； 提供多个实例。
   init = 1, // required
-  showTooltip = true, // 是否显示指示，无占位符直接获取第一个数据
-  tooltip = ['设置提示信息'],
-  defaultValue = [], // 默认值，给出层级结构，提高搜索效率
+  showTooltip = true, // optional,是否显示指示，无占位符直接获取第一个数据
+  tooltip = '设置提示信息', // optional, 替换默认的提示信息
+  defaultValue = false, // optional，以数组给出接入，
+  className = '', // optional, 样式接口
+  callback = '', // optional, 设置回调函数，每次选择后触发回调函数。
 }) {
   // console.log(node,data,defaultValue);
-  let iddNode = document.querySelector(node);
+  let iddNode = document.querySelector(selector);
   let allSelect = [];
 
-  // init tooltip information
-  // if(showTooltip) {
-  //   for(let i=0; i<tooltip.length; i++) {
-  //     let a = [];
-  //     a.push([tooltip[i],1]);
-  //     if(i===0) {
-  //       a.concat(first)
-  //     }
-  //     console.log(a);
-  //     create(i,a,iddNode);
-  //   }
-  // }
-
-/**
- * get data from data , return array
- * @param  {[type]} value [description]
- * @return {[type]}       [description]
- */
-  function loop(value) {
-    let arr = [];
-    for(let items in data[value]) {
-      arr.push([data[value][items],items])
-    }
-    return arr;
+// get defaultValue index
+  function getIndex(value,data) {
+    data[value].length;
+    let a = Array.prototype.slice.call(data[value]);
+    console.log('array',a)
   }
 
-  let first = loop(init);
-  first.unshift(['--占位--',1]);
-  allSelect.push(init);
-  create('init',first,iddNode);
+  let first = loop(init,data);
+  first.unshift([tooltip,1]);
+  // allSelect.push(init);
+  let initNode = create(init,first,iddNode);
+  initNode.selectedIndex = defaultValue.index // 设置select的默认项,判断是否设置了默认值
+
+  if(defaultValue) {
+    defaultValue.forEach((items)=>{
+      let defaultV = loop(items,data)
+      let node = create(items,defaultV,iddNode)
+      node.selectedIndex = 2;
+    });
+  }
 
   function render(event) {
     let target = event.target || event.srcElement;
     if(target.nodeName.toUpperCase() === 'SELECT') {
       let index = target.selectedIndex;
       let value = target.options[index].value;
-      console.log(target.name,'curName');
+      let text = target.options[index].text;
+      console.log('当前选择: ',text);
+      let values = {};
+      values.value = value;
+      values.text = text;
       if( target.name !== 'init') {
-        clean(target.name,iddNode);  // 保证一个异步的过程，得清除完毕才能继续下一步，考虑到很多级的时候。
+        clean(target.name,iddNode,allSelect);
       }
-      target.name = value; // 修改当前select的name
-      console.log(target.name,'changeName');
-      // console.log(index,value);
-      let data = loop(value);
-      // console.log('length',data.length)
-      if( data.length ) {
-        data.unshift(['--占位符--',1]);
-        allSelect.push(value);
-        create('init',data,iddNode)
+      target.name = value;
+      allSelect.push(values);
+      let dataset = loop(value,data);
+      if( dataset.length ) {
+        dataset.unshift([tooltip,1]);
+        create('init',dataset,iddNode)
+      }
+      if( typeof callback) {
+        console.log(callback)
+        callback();
       }
     }
-    console.log(allSelect)
+    console.log('已选择数据: ',allSelect)
   }
-
   // 事件监听，通过change事件触发数据的刷新
   iddNode.addEventListener('change',render,false);
-
+  return allSelect;
 }
 
-// trigger enent
-idd({
-  node:'.am-idd',
+// trigger event
+var a = new idd({
+  selector:'.am-idd',
   data: CD,
   init:86,
   showTooltip:true,
-  tooltip:['这是','提示','条哦']
+  tooltip:'-- 你说了算 --'
 })
 
 
-// 保存已选的数据，
+idd({
+  selector:'.testNode',
+  data: data,
+  init: 1,
+  showTooltip: true,
+  defaultValue: [10],
+  callback: foo,
+})
+function foo() {
+  console.log('111111')
+}
