@@ -17,26 +17,47 @@ function idd({
   let iddNode = document.querySelector(selector);
   let allSelect = [];
 
-// get defaultValue index
-  function getIndex(value,data) {
-    data[value].length;
-    let a = Array.prototype.slice.call(data[value]);
-    console.log('array',a)
+/**
+ * [get Index ]
+ * @param  {[NUmber/String]} code [the code of value]
+ * @param  {[type]} dataset  [description]
+ * @param  {[type]} data  [description]
+ * @return {[type]}       [description]
+ */
+  function getIndex(code,dataset,data) {
+    let a = 0;
+    console.log(code,' code')
+    for( let items in data[dataset]) {
+        a ++;
+        console.log(items)
+        if(items == code ) {
+            console.log('found')
+            return a;
+        }
+    }
+    console.log('no data found')
+    return false;
   }
 
   let first = loop(init,data);
+  let firstIndex;
+  if(defaultValue ) {
+    firstIndex = getIndex(defaultValue[0],init,data)
+  }
   first.unshift([tooltip,1]);
   // allSelect.push(init);
   let initNode = create(init,first,iddNode);
-  initNode.selectedIndex = defaultValue.index // 设置select的默认项,判断是否设置了默认值
+  initNode.selectedIndex = firstIndex;
+  console.log(firstIndex)
 
   if(defaultValue) {
     defaultValue.forEach((items)=>{
-      let defaultV = loop(items,data)
-      let node = create(items,defaultV,iddNode)
-      node.selectedIndex = 2;
-    });
+        let dataBack = loop(items,data)
+        let nodeBack = create('init',dataBack,iddNode)
+        let index = getIndex(items,)
+    })
   }
+
 
   function render(event) {
     let target = event.target || event.srcElement;
@@ -71,13 +92,13 @@ function idd({
 }
 
 // trigger event
-var a = new idd({
-  selector:'.am-idd',
-  data: CD,
-  init:86,
-  showTooltip:true,
-  tooltip:'-- 你说了算 --'
-})
+// var a = new idd({
+//   selector:'.am-idd',
+//   data: CD,
+//   init:86,
+//   showTooltip:true,
+//   tooltip:'-- 你说了算 --'
+// })
 
 
 idd({

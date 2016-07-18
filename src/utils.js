@@ -18,7 +18,7 @@ export function loop(value,data) {
  * @param  {[type]} name    [description]
  * @param  {[type]} options [description]
  * @param  {[type]} node    [description]
- * @return {[type]}         [description]
+ * @return {[type]}         [return current node just created]
  */
 export function create(name,options,node) {
   let select = document.createElement('select');
