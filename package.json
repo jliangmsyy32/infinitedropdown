@@ -1,6 +1,6 @@
 {
   "name": "infinitedropdown",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "infinite dropdown",
   "main": "/dist/infinitedropdown.js",
   "dependencies": {},
@@ -24,7 +24,7 @@
     "build": "webpack --config webpack.config.js -p"
   },
   "keywords": [
-    "amazeui-plugins"
+    "amazeui-plugins",
     "infinitedropdown",
     "dropdown"
   ],

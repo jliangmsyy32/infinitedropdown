@@ -12,11 +12,11 @@ export function loop(value,data) {
   }
 
 /**
- * [judge content, create description]
+ * [create select]
  * @param  {[String]} name    [set select name]
  * @param  {[Array]} optionsContent [every options content]
  * @param  {[String]} node    [the parent node where to append node]
- * @return {[Object]}         [return just created select]
+ * @return {[Object]}         [return created select]
  */
 export function create(name,optionsContent,node,className) {
   if(optionsContent.length < 2) {
@@ -54,8 +54,6 @@ export function clean(name,node,array) {
   }
   return true;
 }
-
-// two ways to delete dom
 
 /**
  * detect if the value is definied and type is the same as we give
