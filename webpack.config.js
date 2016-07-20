@@ -3,10 +3,10 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/mian.js',
   output: {
     path: './dist',
-    filename: 'picker.min.js',
+    filename: 'idd.min.js',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
@@ -23,14 +23,5 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Hello World app',
-      filename: '../docs/doc.html',
-      prod: false,
-      AMUICDN: '.',
-      template: './docs/template.html',
-      inject: 'body'
-        // hash:true
-    })
   ]
 };

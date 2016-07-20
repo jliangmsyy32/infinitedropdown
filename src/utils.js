@@ -2,8 +2,6 @@
 
 /**
  * get data from data , return array
- * @param  {[type]} value [description]
- * @return {[type]}       [description]
  */
 export function loop(value,data) {
     let arr = [];
@@ -15,12 +13,12 @@ export function loop(value,data) {
 
 /**
  * [judge content, create description]
- * @param  {[type]} name    [description]
- * @param  {[type]} options [description]
- * @param  {[type]} node    [description]
- * @return {[type]}         [return current node just created]
+ * @param  {[String]} name    [set select name]
+ * @param  {[Array]} optionsContent [every options content]
+ * @param  {[String]} node    [the parent node where to append node]
+ * @return {[Object]}         [return just created select]
  */
-export function create(name,optionsContent,node) {
+export function create(name,optionsContent,node,className) {
   if(optionsContent.length < 2) {
     console.log('NO INCOMING DATA');
     return false;
@@ -28,6 +26,7 @@ export function create(name,optionsContent,node) {
   let select = document.createElement('select');
   let content = '';
   select.name = name;
+  select.className = className || '';
   for(let i=0; i<optionsContent.length; i++) {
     content += `<option value=${optionsContent[i][1]}>${optionsContent[i][0]}</option>`
   }

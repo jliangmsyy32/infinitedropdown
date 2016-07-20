@@ -8,7 +8,7 @@ var SRC_PATH = path.resolve(ROOT_PATH, 'src');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'dist');
 console.log(SRC_PATH);
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/index.js',
   output: {
     path: './dist',
     filename: 'idd.js'

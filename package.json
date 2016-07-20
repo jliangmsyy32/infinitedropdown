@@ -5,11 +5,14 @@
   "main": "/dist/infinitedropdown.js",
   "dependencies": {},
   "devDependencies": {
+    "amazeui-doc-util": "^0.7.1",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "eslint": "^3.0.1",
-    "html-webpack-plugin": "^2.22.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "markit-json": "^0.2.1",
     "strip-loader": "^0.1.2",
     "uglify-js": "^2.7.0",
     "webpack": "^1.13.1",
@@ -21,8 +24,9 @@
     "build": "webpack --config webpack.config.js -p"
   },
   "keywords": [
-    "picker",
-    "city"
+    "amazeui-plugins"
+    "infinitedropdown",
+    "dropdown"
   ],
   "author": "lwxyfer ",
   "license": "MIT"

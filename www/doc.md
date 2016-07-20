@@ -2,8 +2,6 @@
 
 infinite dropdown
 
-[DOCUMENT](https://lwxyfer.github.io/infinitedropdown/)
-
 # USAGE
 
 ## Installation
@@ -74,4 +72,63 @@ const data = {
   },
 }
 ```
-## MIT LICENSE
+
+## DEMO
+
+DEMO1:
+`````html
+<h1>InfiniteDropdown</h1>
+<h1>load city data:</h1>
+<div class="am-idd"></div>
+<button id="getData">获取数据</button>
+`````
+```js
+var a = new idd({
+  selector: '.am-idd',
+  data: CD,
+  init: 86,
+  showTooltip: true,
+  tooltip: '-- 你说了算 --'
+})
+```
+DEMO2:
+`````html
+<h1>load custom data</h1>
+<div class="noDefault"></div>
+`````
+```js
+var b= idd({
+  selector:'.testNode',
+  data: data,
+  init: 1,
+  showTooltip: true,
+});
+```
+DEMO3:
+`````html
+<h1>set default value</h1>
+<div class="testNode"></div>
+`````
+```js
+var c = idd({
+  selector:'.noDefault',
+  data: data,
+  init: 1,
+  showTooltip: true,
+});
+```
+DEMO4:
+`````html
+<h1>add custom css</h1>
+<div class="addClass"></div>
+`````
+```js
+var d = infinitedropdown({
+  selector:'.addClass',
+  data: CD,
+  init: 86,
+  defaultValue:[510000,510100],
+  showTooltip: true,
+  className: 'custom-css',
+});
+```
