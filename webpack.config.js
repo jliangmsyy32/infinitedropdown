@@ -1,12 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/mian.js',
+  entry: './src/main.js',
   output: {
     path: './dist',
-    filename: 'idd.min.js',
+    filename: 'infinitedropdown.min.js',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
