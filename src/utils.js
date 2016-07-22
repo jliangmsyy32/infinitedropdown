@@ -4,12 +4,12 @@
  * get data from data , return array
  */
 export function loop(value,data) {
-    let arr = [];
-    for(let items in data[value]) {
-      arr.push([data[value][items],items])
-    }
-    return arr;
+  let arr = [];
+  for(let items in data[value]) {
+    arr.push([data[value][items],items])
   }
+  return arr;
+}
 
 /**
  * [create select]
@@ -82,10 +82,10 @@ export function dataCheck(value,type) {
 export function getIndex(code,dataset,data) {
   let a = 0;
   for( let items in data[dataset]) {
-      a ++;
-      if(items == code ) {
-          return a;
-      }
+    a ++;
+    if(items == code ) {
+        return a;
+    }
   }
   console.log('no data found')
   return false;

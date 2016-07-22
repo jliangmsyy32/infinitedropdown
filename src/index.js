@@ -2,7 +2,7 @@ import { data } from './data';
 import { ChineseDistricts as CD } from './citydata';
 import { infinitedropdown as idd } from './main';
 
-var a = new idd({
+var a = idd({
   selector: '.am-idd',
   data: CD,
   init: 86,
